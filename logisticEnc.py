@@ -25,16 +25,23 @@ def decryptText1(inputString,key):
     decrypted = [chr(valMap.index(char)+97) for char in inputString]
     return ''.join(decrypted)
 
-# Testing method 1
 
 testKey = (3.7,0.1)
+testKey2 = (3.699,0.1)
+testKey3 = (3.703,0.09)
 
+# These keys are pretty similar numerically. If you use one to 
+# decrypt an encrypted string that used another key, they'll give something
+# totally different than the correct
+'''
+# Testing method 1
 test_input1 = input("Enter a lowercase string (no spaces) to encrypt: ")
 
 outTest1 = encryptText1(test_input1,testKey)
 print("Your string, encrypted by method 1: " + str(outTest1))
 print("Decrypting... ")
 print("Decrypted string: " + decryptText1(outTest1,testKey))
+'''
 
 def encryptText2(inputString,key):
     # a slightly more advanced version that works for all
@@ -50,15 +57,19 @@ def decryptText2(inputString,key):
     decrypted = [chr(valMap.index(float(base64.b64decode(x).decode()))) for x in inputString.split()]
     return "".join(decrypted)
 
+'''
+# Testing method 2
+
 test_input2 = input("Enter a string of ASCII characters to encrypt: ")
 outTest2 = encryptText2(test_input2,testKey)
 print("Your string encrypted by method 2: " + str(outTest2))
 print("Decrypting...")
 print("Your string decrypted by method 2: " + str(decryptText2(outTest2,testKey)))
+'''
 
 def encryptText3(inputString,key):
     # Method 3: also works on ASCII, but instead of worrying about the values
-    # produced by the logistic map themselves, we sort them in order
+    # produced by the logistic map themselves, I sort the values in order
     # and use the mapping (original -> ordinate position) to change ASCII
     # values into new ones. 
     rankMap = logisticRankedMap(key[0],key[1],255)
@@ -70,16 +81,19 @@ def decryptText3(inputString,key):
     decrypted = [chr(rankMap.index(ord(char))) for char in inputString]
     return ''.join(decrypted)
 
-###########################
-# eventual image encoding #
-###########################
-'''
-image = open('deer.gif', 'rb') #open binary file in read mode
-image_read = image.read()
-image_64_encode = base64.encodestring(image_read)'''
-
 test_input3 = input("Enter a string of ASCII characters to encrypt: ")
 outTest3 = encryptText3(test_input3,testKey)
 print("Your string encrypted by method 3: " + str(outTest3))
 print("Decrypting...")
-print("Your string decrypted by method 3: " + str(decryptText3(outTest3,testKey)))
+print("Your string decrypted by method 3 with the key: " + str(decryptText3(outTest3,testKey)))
+print("Your string decrypted by method 3 with a bad key: " + str(decryptText3(outTest3,testKey2)))
+print("Your string decrypted by method 3 with another bad key: " + str(decryptText3(outTest3,testKey3)))
+
+# eventual image encoding, useless for now - just a code snippet that
+# imports a binary image and encodes it in base64.
+'''
+image = open('deer.gif', 'rb') #open binary file in read mode
+image_read = image.read()
+image_64_encode = base64.encodestring(image_read)
+'''
+
