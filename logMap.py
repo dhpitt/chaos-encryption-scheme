@@ -5,8 +5,6 @@
 
 import numpy as np
 import matplotlib.pylab as plt
-from matplotlib.animation import FuncAnimation
-import matplotlib.animation as anim
 
 def logisticEq(r,x0,steps):
     # The logistic equation is an iterative function
@@ -24,10 +22,35 @@ def logisticEq(r,x0,steps):
     return output
 
 
-def getLogisticValue():
+def getLogisticValue(r,x,n):
     # A helper that will eventually return the value
     # at step n given r, x0 and n.
-    return 0
+    while n > 0:
+        x = r*x*(1-x)
+        n -= 1
+    return x
+
+
+def logisticEqWithRounding(r,x0,steps,places):
+    # Performs logistic equation and rounds all values to
+    # a number of decimal places.
+    output = []
+    x = x0
+    for i in range(steps):
+        output.append(round(x,places))
+        x = r*x*(1-x)
+    return output
+
+
+def logisticRankedMap(r,x0,steps):
+    # Performs logistic equation and ranks generated values in order.
+    output = []
+    x = x0
+    for i in range(steps):
+        output.append([x,i])
+        x = r*x*(1-x)
+    output = sorted(output, key=lambda x: x[0])
+    return [x[1] for x in output]
 
 # For values of r >= 3.56995, we see aperiodic oscillation.
 # Slight changes in the initial conditions can cause
@@ -55,12 +78,4 @@ def collisionChecker(steps,places):
 
     return collisions
 
-def logisticEqWithRounding(r,x0,steps,places):
-    # Performs logistic equation and rounds all values to
-    # a number of decimal places.
-    output = []
-    x = x0
-    for i in range(steps):
-        output.append(round(x,places))
-        x = r*x*(1-x)
-    return output
+#print(logisticRankedMap(3.7,0.6,100))

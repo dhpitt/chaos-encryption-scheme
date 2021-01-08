@@ -8,6 +8,7 @@
 # at time = value. 
 
 from logMap import logisticEqWithRounding
+from logMap import logisticRankedMap
 import base64
 
 def encryptText1(inputString,key):
@@ -55,6 +56,20 @@ print("Your string encrypted by method 2: " + str(outTest2))
 print("Decrypting...")
 print("Your string decrypted by method 2: " + str(decryptText2(outTest2,testKey)))
 
+def encryptText3(inputString,key):
+    # Method 3: also works on ASCII, but instead of worrying about the values
+    # produced by the logistic map themselves, we sort them in order
+    # and use the mapping (original -> ordinate position) to change ASCII
+    # values into new ones. 
+    rankMap = logisticRankedMap(key[0],key[1],255)
+    encrypted = [chr(rankMap[ord(char)]) for char in inputString]
+    return ''.join(encrypted)
+
+def decryptText3(inputString,key):
+    rankMap = logisticRankedMap(key[0],key[1],255)
+    decrypted = [chr(rankMap.index(ord(char))) for char in inputString]
+    return ''.join(decrypted)
+
 ###########################
 # eventual image encoding #
 ###########################
@@ -63,3 +78,8 @@ image = open('deer.gif', 'rb') #open binary file in read mode
 image_read = image.read()
 image_64_encode = base64.encodestring(image_read)'''
 
+test_input3 = input("Enter a string of ASCII characters to encrypt: ")
+outTest3 = encryptText3(test_input3,testKey)
+print("Your string encrypted by method 3: " + str(outTest3))
+print("Decrypting...")
+print("Your string decrypted by method 3: " + str(decryptText3(outTest3,testKey)))

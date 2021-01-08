@@ -5,8 +5,6 @@
 
 import numpy as np
 import matplotlib.pylab as plt
-from matplotlib.animation import FuncAnimation
-import matplotlib.animation as anim
 
 def logisticEq(r,x0,steps):
     # The logistic equation is an iterative function
