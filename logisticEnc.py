@@ -8,25 +8,58 @@
 # at time = value. 
 
 from logMap import logisticEqWithRounding
-import struct
 import base64
 
 def encryptText1(inputString,key):
-    # a simpler version that encrypts values from 1-26
+    # a basic version that encrypts and decrypts lowercase letters only.
     # key is a tuple (r,x0).
-    hashes = logisticEqWithRounding(key[0],key[1],26,4)
-    encrypted = [hashes[ord(char) - 97] for char in inputString]
+    # The bad part of this system is that the encrypted data is stored
+    # as a list of floats. 
+    valMap = logisticEqWithRounding(key[0],key[1],26,4)
+    encrypted = [valMap[ord(char) - 97] for char in inputString]
     return encrypted
 
-def decryptText1(input,key):
-    hashes = logisticEqWithRounding(key[0],key[1],26,4)
-    decrypted = [chr(hashes.index(char)+97) for char in input]
+def decryptText1(inputString,key):
+    valMap = logisticEqWithRounding(key[0],key[1],26,4)
+    decrypted = [chr(valMap.index(char)+97) for char in inputString]
     return ''.join(decrypted)
 
+# Testing method 1
+
 testKey = (3.7,0.1)
-outTest = encryptText1("thequickbrownfoxjumpedoverthelazydog",testKey)
-print(outTest)
 
-print("Decrypted: " + decryptText1(outTest,testKey))
+test_input1 = input("Enter a lowercase string (no spaces) to encrypt: ")
 
+outTest1 = encryptText1(test_input1,testKey)
+print("Your string, encrypted by method 1: " + str(outTest1))
+print("Decrypting... ")
+print("Decrypted string: " + decryptText1(outTest1,testKey))
+
+def encryptText2(inputString,key):
+    # a slightly more advanced version that works for all
+    # 255 ASCII characters.
+    # This method sends every character to its logistic mapped value, then encodes
+    # to a base64 string.
+    valMap = logisticEqWithRounding(key[0],key[1],255,6)
+    encrypted = [(base64.b64encode((str(valMap[ord(char)]).encode("ascii")))).decode("ascii") for char in inputString]
+    return " ".join(encrypted)
+
+def decryptText2(inputString,key):
+    valMap = logisticEqWithRounding(key[0],key[1],255,6)
+    decrypted = [chr(valMap.index(float(base64.b64decode(x).decode()))) for x in inputString.split()]
+    return "".join(decrypted)
+
+test_input2 = input("Enter a string of ASCII characters to encrypt: ")
+outTest2 = encryptText2(test_input2,testKey)
+print("Your string encrypted by method 2: " + str(outTest2))
+print("Decrypting...")
+print("Your string decrypted by method 2: " + str(decryptText2(outTest2,testKey)))
+
+###########################
+# eventual image encoding #
+###########################
+'''
+image = open('deer.gif', 'rb') #open binary file in read mode
+image_read = image.read()
+image_64_encode = base64.encodestring(image_read)'''
 
