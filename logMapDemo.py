@@ -84,13 +84,13 @@ def logisticEqWithCollisions(r,x0,steps,places):
 #logisticEqWithCollisions(3.7,0.3,255,6)
 
 def collisionChecker(steps,places):
-    collisions = []
-    for i in range(30):
-        collisions.append(logisticEqWithCollisions(3.7,0.01*(i+1),steps,places))
-
+    collisions = 0
+    for i in range(2000):
+        collisions += logisticEqWithCollisions(3.7,0.0005*(i+1),steps,places)
     return collisions
-print(collisionChecker(255,6))
-print(collisionChecker(26,4))
+
+print(collisionChecker(255,7))
+#print(collisionChecker(26,4))
 
 def logisticEqWithRounding(r,x0,steps,places):
     # Performs logistic equation and rounds all values to

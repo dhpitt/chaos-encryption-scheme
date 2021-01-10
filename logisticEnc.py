@@ -57,7 +57,7 @@ def decryptText2(inputString,key):
     decrypted = [chr(valMap.index(float(base64.b64decode(x).decode()))) for x in inputString.split()]
     return "".join(decrypted)
 
-'''
+
 # Testing method 2
 
 test_input2 = input("Enter a string of ASCII characters to encrypt: ")
@@ -65,7 +65,6 @@ outTest2 = encryptText2(test_input2,testKey)
 print("Your string encrypted by method 2: " + str(outTest2))
 print("Decrypting...")
 print("Your string decrypted by method 2: " + str(decryptText2(outTest2,testKey)))
-'''
 
 def encryptText3(inputString,key):
     # Method 3: also works on ASCII, but instead of worrying about the values
