@@ -1,6 +1,9 @@
 # chaos-based-encryption
 A proposed scheme for encrypting image data using chaotic systems.
 
+![The Logistic Equation](https://github.com/dhpitt/chaos-encryption-scheme/blob/main/images/bifurcation_diagram_2.png)
+<div align="center"> A bifurcation diagram of the logistic equation. </div>
+
 # What is this?
 I've always been curious how cryptography works so I thought I'd try my hand at making my own encryption scheme. This project includes several encryption schemes that use a chaotic system to encode and decode data. A few similar implementations exist in literature, but I wanted to see if I could figure it out on my own.
 
