@@ -108,7 +108,6 @@ def oneTimePadDecrypt(inputString,key):
     decrypted = [chr(int(hex,16) - x) for hex,x in zip(split,pad)]
     return ''.join(decrypted)
 
-
 # eventual image encoding, useless for now - just a code snippet that
 # imports a binary image and encodes it in base64.
 '''
@@ -116,7 +115,7 @@ image = open('deer.gif', 'rb') #open binary file in read mode
 image_read = image.read()
 image_64_encode = base64.encodestring(image_read)
 '''
-
+ # Sample text
 loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra, dui ac cursus elementum, lorem lacus faucibus risus, vel fermentum massa diam et ipsum. Nam tincidunt enim eu erat maximus viverra. Sed id felis id orci malesuada viverra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec tincidunt aliquam rhoncus. Sed sagittis, elit mollis vestibulum efficitur, risus libero fringilla leo, sit amet ullamcorper purus erat nec lorem. Cras cursus in nibh hendrerit commodo. Praesent eget feugiat diam. Sed placerat a sapien eget pharetra. Etiam congue enim nec neque mattis dignissim. \n Integer sit amet est id dolor mattis lacinia ac eget nisi. Sed diam urna, venenatis sed egestas vitae, gravida at purus. Nulla ac posuere nibh, et aliquam justo. Pellentesque elit odio, pharetra nec orci sed, volutpat egestas nisi. Integer et nisi vel orci eleifend mattis at in libero. Mauris iaculis id tellus tristique luctus. Etiam arcu eros, hendrerit ut placerat ac, cursus vitae urna. Nulla non nisl at leo ornare consequat in vitae augue. Donec vehicula massa tempus venenatis consectetur. Etiam fringilla purus vel ultricies rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere euismod ante, a fringilla purus faucibus in. "
 
 lorem_OTP = oneTimePadEncrypt(loremIpsum,testKey2)
