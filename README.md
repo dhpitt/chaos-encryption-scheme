@@ -1,5 +1,5 @@
 # chaos-based-encryption
-A proposed scheme for encrypting image data using chaotic systems.
+A proposed scheme for encrypting image and text data using chaotic systems.
 
 ![The Logistic Equation](https://github.com/dhpitt/chaos-encryption-scheme/blob/main/images/bifurcation_diagram_2.png)
 <div align="center"> A bifurcation diagram of the logistic equation. </div>
