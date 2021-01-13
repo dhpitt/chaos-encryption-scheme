@@ -5,7 +5,7 @@ A proposed scheme for encrypting image and text data using chaotic systems.
 <div align="center"> A bifurcation diagram of the logistic equation. </div>
 
 # What is this?
-I've always been curious how cryptography works so I thought I'd try my hand at making my own encryption scheme. This project includes several encryption schemes that use a chaotic system to encode and decode data. A few similar implementations exist in literature, but I wanted to see if I could figure it out on my own.
+I've always been curious how cryptography works so I thought I'd try my hand at making my own encryption scheme. This project includes several encryption schemes that use a chaotic system to encode and decode data. A few similar implementations exist in literature (see references), but I wanted to get a logistic one-time-pad working on its own and use it as a springboard for developing cryptographic schemes based on more advanced chaotic systems.
 
 # What's in the repository?
 logMap.py contains some implementations of the logistic equation, the mathematical backbone of the encryption scheme. logMapDemo.py shows the logistic equation at work under several different conditions, and demonstrates the minimal testing I've performed thus far to check if my cryptographic hash has collisions. logisticEnc.py contains the actual encryption scheme and allows the user to encrypt and decrypt ASCII data of their choice using my encryption scheme. conceptArt.py contains the code I used to generate the neat pattern I use as the background of the GitHub page (still in development). 
