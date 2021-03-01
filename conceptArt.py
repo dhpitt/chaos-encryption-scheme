@@ -4,6 +4,7 @@ import matplotlib.pylab as plt
 x = []
 r = []
 
+res = 100
 # Generate the attractor for every value of r
 for i in range(3000):
     r.append(3.5+i*0.001)
@@ -21,5 +22,5 @@ for i in range(len(r)):
     for j in x[i]:
         ax.plot(r[i],j,'ro',ms=0.2)
 
-plt.savefig("images/bifurcation_diagram_2.png",dpi=300)
+plt.savefig("images/bifurcation_diagram_zoomed.png",dpi=300)
 plt.show()

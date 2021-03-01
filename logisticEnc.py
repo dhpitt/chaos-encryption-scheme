@@ -68,7 +68,7 @@ print("Decrypting...")
 print("Your string decrypted by method 2: " + str(decryptText2(outTest2,testKey)))
 '''
 
-def encryptText3(inputString,key):
+def ascii_mapping(inputString,key):
     # Method 3: also works on ASCII, but instead of worrying about the values
     # produced by the logistic map themselves, I sort the values in order
     # and use the mapping (original -> ordinate position) to change ASCII
@@ -77,19 +77,19 @@ def encryptText3(inputString,key):
     encrypted = [chr(rankMap[ord(char)]) for char in inputString]
     return ''.join(encrypted)
 
-def decryptText3(inputString,key):
+def ascii_mapping_reverse(inputString,key):
     rankMap = logisticRankedMap(key[0],key[1],255)
     decrypted = [chr(rankMap.index(ord(char))) for char in inputString]
     return ''.join(decrypted)
 
 '''
 test_input3 = input("Enter a string of ASCII characters to encrypt: ")
-outTest3 = encryptText3(test_input3,testKey)
+outTest3 = ascii_mapping(test_input3,testKey)
 print("Your string encrypted by method 3: " + str(outTest3))
 print("Decrypting...")
-print("Your string decrypted by method 3 with the key: " + str(decryptText3(outTest3,testKey)))
-print("Your string decrypted by method 3 with a bad key: " + str(decryptText3(outTest3,testKey2)))
-print("Your string decrypted by method 3 with another bad key: " + str(decryptText3(outTest3,testKey3)))
+print("Your string decrypted by method 3 with the key: " + str(ascii_mapping_reverse(outTest3,testKey)))
+print("Your string decrypted by method 3 with a bad key: " + str(ascii_mapping_reverse(outTest3,testKey2)))
+print("Your string decrypted by method 3 with another bad key: " + str(ascii_mapping_reverse(outTest3,testKey3)))
 '''
 
 def oneTimePadEncrypt(inputString,key):
@@ -119,5 +119,7 @@ image_64_encode = base64.encodestring(image_read)
 loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pharetra, dui ac cursus elementum, lorem lacus faucibus risus, vel fermentum massa diam et ipsum. Nam tincidunt enim eu erat maximus viverra. Sed id felis id orci malesuada viverra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec tincidunt aliquam rhoncus. Sed sagittis, elit mollis vestibulum efficitur, risus libero fringilla leo, sit amet ullamcorper purus erat nec lorem. Cras cursus in nibh hendrerit commodo. Praesent eget feugiat diam. Sed placerat a sapien eget pharetra. Etiam congue enim nec neque mattis dignissim. \n Integer sit amet est id dolor mattis lacinia ac eget nisi. Sed diam urna, venenatis sed egestas vitae, gravida at purus. Nulla ac posuere nibh, et aliquam justo. Pellentesque elit odio, pharetra nec orci sed, volutpat egestas nisi. Integer et nisi vel orci eleifend mattis at in libero. Mauris iaculis id tellus tristique luctus. Etiam arcu eros, hendrerit ut placerat ac, cursus vitae urna. Nulla non nisl at leo ornare consequat in vitae augue. Donec vehicula massa tempus venenatis consectetur. Etiam fringilla purus vel ultricies rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere euismod ante, a fringilla purus faucibus in. "
 
 lorem_OTP = oneTimePadEncrypt(loremIpsum,testKey2)
-print(lorem_OTP)
-print(oneTimePadDecrypt(lorem_OTP,testKey2))
+#print(lorem_OTP)
+lorem_decrypted = oneTimePadDecrypt(lorem_OTP,testKey2)
+print(loremIpsum == lorem_decrypted)
+#print(lorem_decrypted)
